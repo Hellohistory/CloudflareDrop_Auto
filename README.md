@@ -1,12 +1,14 @@
 # Cloudflare Drop 全自动部署工具
 
-纯 Node.js 实现 Cloudflare Drop 的一键部署，**零浏览器依赖**，包含自研的 PoW (Proof-of-Work) 求解器。
+纯 Node.js 实现 Cloudflare Drop 的一键部署，**零浏览器依赖**，包含 PoW (Proof-of-Work) 求解器。
 
 ## 🔧 AI Agent 安装
 
 将下面这段话发送给你的 AI Agent，它就会自动完成安装：
 
-> 请从 https://github.com/Hellohistory/CloudflareDrop_Auto/releases 下载最新的 Skill 包，将其注册为本地 Skill，确认 `deploy.js` 可以在 Node.js >= 18 环境下正常运行后，向我讲解这个 Skill 的完整能力。
+```markdown
+请从 https://github.com/Hellohistory/CloudflareDrop_Auto/releases 下载最新的 Skill 包，将其注册为本地 Skill，确认 `deploy.js` 可以在 Node.js >= 18 环境下正常运行后，向我讲解这个 Skill 的完整能力。
+```
 
 ## ⚡ 快速开始
 
@@ -16,8 +18,10 @@ node --version
 
 # 2. 部署一个文件夹
 node deploy.js ./my-website
+```
 
-# 输出:
+## 输出:
+```
 # [1/5] Reading files...
 # [2/5] Solving proof-of-work...  2.1s (2.0M hashes)
 # [3/5] Provisioning...

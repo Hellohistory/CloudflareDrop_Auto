@@ -25,7 +25,7 @@ jobs:
       - name: Create archive
         run: |
           cd dist
-          zip -r ../cloudflare-drop-skill.zip .
+          zip -r ../cloudflare-drop-auto-skill.zip .
 
       - name: Generate release notes
         id: notes

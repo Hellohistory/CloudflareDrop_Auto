@@ -1,6 +1,6 @@
 ---
-name: cloudflare-drop-deploy
-description: Cloudflare Drop 全自动部署工具。纯 Node.js 协议实现，零浏览器依赖，含自研 PoW 求解器。当用户要求"部署到 Cloudflare Drop"、"自动部署静态站"、"零配置部署网页"、"临时预览部署"、"快速上线 HTML"、"Drop 部署"、"cloudflare drop deploy"、或需要将本地文件夹通过 API 自动发布到 workers.dev 获取公网 URL 时使用。Keywords: cloudflare, drop, deploy, static site, PoW, workers.dev, 部署, 静态站, API 部署, 自动上线.
+name: cloudflare-drop-auto-deploy
+description: Cloudflare Drop 全自动部署工具。纯 Node.js 协议实现，零浏览器依赖，含 PoW 求解器。当用户要求"部署到 Cloudflare Drop"、"自动部署静态站"、"零配置部署网页"、"临时预览部署"、"快速上线 HTML"、"Drop 部署"、"cloudflare drop deploy"、或需要将本地文件夹通过 API 自动发布到 workers.dev 获取公网 URL 时使用。Keywords: cloudflare, drop, deploy, static site, PoW, workers.dev, 部署, 静态站, API 部署, 自动上线.
 metadata:
   repo: https://github.com/Hellohistory/CloudflareDrop_Auto
   version: "1.0"
@@ -10,7 +10,7 @@ metadata:
 
 ## Mission
 
-将本地静态文件夹通过 Cloudflare Drop API 全自动部署到 `*.workers.dev` 公网 URL，纯 Node.js 实现，含自研 SHA-256 哈希链 PoW 求解器，无需浏览器。
+将本地静态文件夹通过 Cloudflare Drop API 全自动部署到 `*.workers.dev` 公网 URL，纯 Node.js 实现，含 SHA-256 哈希链 PoW 求解器，无需浏览器。
 
 ## When to Use
 
@@ -53,7 +53,7 @@ Agent 在触发本 Skill 前需确认以下信息：
 2. 确认目标文件夹存在：`Test-Path <folder>`
 3. 确认文件夹非空且包含 HTML 文件
 
-**Exit when**: 所有检查通过
+**Exit when**: 所有检查通过，但不需要每次使用都做此验证
 
 ### Phase 1: 执行部署
 
@@ -92,11 +92,10 @@ node <skill-dir>/deploy.js <目标文件夹绝对路径>
 
 ## Guardrails
 
-- **禁止**: 在未确认 Node.js >= 18 的情况下直接运行脚本
+- **禁止**: 在未确认 Node.js >= 18 的情况下直接运行脚本，但不需要每次都确认
 - **禁止**: 部署前不检查文件夹是否存在
 - **禁止**: 对部署失败不做重试就放弃（网络波动常见）
 - **禁止**: 绕过 PoW 求解直接调用 API（PoW 是服务端强制要求的）
-- **禁止**: 用 Playwright/浏览器方案替代纯 API 方案——`deploy.js` 是首选
 
 ## Anti-Patterns
 
