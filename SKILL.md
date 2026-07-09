@@ -1,6 +1,9 @@
 ---
 name: cloudflare-drop-deploy
 description: Cloudflare Drop 全自动部署工具。纯 Node.js 协议实现，零浏览器依赖，含自研 PoW 求解器。当用户要求"部署到 Cloudflare Drop"、"自动部署静态站"、"零配置部署网页"、"临时预览部署"、"快速上线 HTML"、"Drop 部署"、"cloudflare drop deploy"、或需要将本地文件夹通过 API 自动发布到 workers.dev 获取公网 URL 时使用。Keywords: cloudflare, drop, deploy, static site, PoW, workers.dev, 部署, 静态站, API 部署, 自动上线.
+metadata:
+  repo: https://github.com/Hellohistory/CloudflareDrop_Auto
+  version: "1.0"
 ---
 
 # Cloudflare Drop — 全自动部署
