@@ -1,0 +1,55 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Package skill bundle
+        run: |
+          mkdir -p dist
+          cp deploy.js dist/
+          cp SKILL.md dist/
+          cp README.md dist/
+          cp PRINCIPLE.md dist/
+
+      - name: Create archive
+        run: |
+          cd dist
+          zip -r ../cloudflare-drop-skill.zip .
+
+      - name: Generate release notes
+        id: notes
+        run: |
+          echo "## Cloudflare Drop Skill v${{ github.ref_name }}" > release_notes.md
+          echo "" >> release_notes.md
+          echo "纯 Node.js 全自动部署工具，零浏览器依赖。" >> release_notes.md
+          echo "" >> release_notes.md
+          echo "### 使用" >> release_notes.md
+          echo '```bash' >> release_notes.md
+          echo 'node deploy.js ./my-website' >> release_notes.md
+          echo '```' >> release_notes.md
+          echo "" >> release_notes.md
+          echo "部署后会输出 Live URL 和 Claim URL，点击 Claim URL 登录 Cloudflare 账户即可永久保存。" >> release_notes.md
+          echo "" >> release_notes.md
+          echo "### 包含" >> release_notes.md
+          echo "- \`deploy.js\` — 主部署脚本" >> release_notes.md
+          echo "- \`SKILL.md\` — Agent Skill 文件" >> release_notes.md
+          echo "- \`README.md\` — 项目说明" >> release_notes.md
+          echo "- \`PRINCIPLE.md\` — 技术原理" >> release_notes.md
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: cloudflare-drop-skill.zip
+          body_path: release_notes.md
+          generate_release_notes: false
